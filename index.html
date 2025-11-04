@@ -1,0 +1,84 @@
+!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CourierVerse - Strategy Demo</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="page">
+      <header class="page__header">
+        <div class="logo">
+          <span class="logo__accent">Courier</span>Verse
+        </div>
+        <p class="subtitle">Drag couriers onto terrains, chase delivery targets, and outsmart your rival.</p>
+      </header>
+      <main class="board">
+        <section class="player-bench player-bench--top" aria-label="Player A courier pool">
+          <h2 class="player-bench__title">Player A Dispatch Bay</h2>
+          <div id="player-a-bench" class="bench-grid" data-player="A"></div>
+        </section>
+        <section class="battlefield" aria-label="Terrain assignments">
+          <div class="battlefield__header">
+            <h2 class="battlefield__title">Active Terrains</h2>
+            <div class="battlefield__actions">
+              <button id="deal-button" type="button" class="control-button control-button--accent">Deal Round</button>
+              <button id="reset-button" type="button" class="control-button control-button--ghost">Reset Round</button>
+            </div>
+          </div>
+          <div id="terrain-grid" class="terrain-grid"></div>
+          <div class="battlefield__footer">
+            <button id="result-button" type="button" class="control-button control-button--primary">Calculate Winner</button>
+            <div id="results" class="results-panel" aria-live="polite"></div>
+          </div>
+        </section>
+        <section class="player-bench player-bench--bottom" aria-label="Player B courier pool">
+          <h2 class="player-bench__title">Player B Dispatch Bay</h2>
+          <div id="player-b-bench" class="bench-grid" data-player="B"></div>
+        </section>
+      </main>
+    </div>
+    <template id="terrain-template">
+      <article class="terrain-card" draggable="false">
+        <header class="terrain-card__header">
+          <h3 class="terrain-card__name"></h3>
+          <span class="terrain-card__target"></span>
+        </header>
+        <div class="terrain-card__lanes">
+          <div class="terrain-lane terrain-lane--A" data-player="A">
+            <div class="terrain-lane__label">
+              <span>Player A</span>
+              <strong class="terrain-lane__total">0</strong>
+            </div>
+            <div class="terrain-dropzone" data-player="A"></div>
+          </div>
+          <div class="terrain-lane terrain-lane--B" data-player="B">
+            <div class="terrain-lane__label">
+              <span>Player B</span>
+              <strong class="terrain-lane__total">0</strong>
+            </div>
+            <div class="terrain-dropzone" data-player="B"></div>
+          </div>
+        </div>
+      </article>
+    </template>
+    <template id="courier-template">
+      <div class="courier-card">
+        <span class="courier-card__badge"></span>
+        <header class="courier-card__header">
+          <span class="courier-card__rarity"></span>
+          <span class="courier-card__value">--</span>
+        </header>
+        <div class="courier-card__body">
+          <div class="courier-card__range"></div>
+          <div class="courier-card__preference"></div>
+        </div>
+        <div class="courier-card__delivery">Awaiting assignment</div>
+      </div>
+    </template>
+    <script src="courierverse.js" defer></script>
+  </body>
